@@ -1,0 +1,638 @@
+/* table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  } */
+
+/* table, th, td {
+    border: 2px  black;
+ } */
+
+.stepwizard-step p {
+  margin-top: 10px;
+}
+.stepwizard-row {
+  display: table-row;
+  /* margin: 10px; */
+}
+.stepwizard {
+  margin-bottom: 30px;
+  display: table;
+  width: 100%;
+  position: relative;
+}
+/* .stepwizard-step button {
+  background-color: black;
+} */
+
+.stepwizard-step button[disabled] {
+  opacity: 1 !important;
+  filter: alpha(opacity=100) !important;
+}
+
+/* .stepwizard-step button :active {
+  background-color: black;
+} */
+.stepwizard-row:before {
+  top: 14px;
+  bottom: 0;
+  position: absolute;
+  content: " ";
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+}
+
+input[type="text"],
+select.form-control {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+input[type="text"]:focus,
+select.form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.stepwizard-step {
+  display: table-cell;
+  text-align: center;
+  position: relative;
+  /* background-color: black; */
+}
+
+.stepwizard-step p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  /* background-color: black; */
+}
+.btn-right {
+  position: relative;
+  right: 0;
+}
+
+.lead {
+  color: rgb(213, 43, 30);
+  font-weight: 600;
+}
+.lead_style {
+  color: rgb(20, 20, 20);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ::ng-deep {
+  .ngx-slider-pointer {
+    background: black;
+  }
+} */
+
+::ng-deep .ngx-slider.ngx-slider-selection {
+  /* height: 16px !important; */
+  background-color: rgb(213, 43, 30);
+  color: rgb(213, 43, 30);
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: rgb(213, 43, 30);
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: red;
+}
+
+mat-form-field.mat-form-field {
+  color: red;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: black;
+}
+
+
+.wizard_content {
+  
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%) */
+}
+.wizard_element {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  /* background-color: cadetblue; */
+}
+
+/* ::ng-deep {
+  .custom-slider .ngx-slider .ngx-slider-bar {
+    background: #ffe4d1;
+    height: 5px;
+  }
+} */
+.slider {
+  color: red;
+  background-color: rgb(213, 43, 30);
+}
+.skills_class {
+  padding-left: 20px;
+  font-size: 14px;
+}
+.skillsDetails {
+  /* background-color: red; */
+
+  border-radius: 2px;
+  /* width: 100%; */
+  /* margin-left: 5px; */
+}
+
+.checkbox_style {
+  background-color: rgb(20, 20, 20, 0.6);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 20px;
+  color: white;
+  padding: 10px;
+  margin-top: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+}
+.suit_drpdown {
+  width: 100%;
+}
+
+.mat-checkbox-ripple .mat-ripple-element,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  color: rgb(20, 20, 20);
+}
+
+/* ::ng-deep .mat-checkbox-ripple .mat-ripple-element {
+  background-color: black !important;
+} */
+.skill_display {
+  background: rgb(213, 43, 30, 0.3);
+  border: none;
+  border-bottom: 1px solid #000000;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 3px;
+  /* padding: 20px; */
+  /* margin-bottom: 20px; */
+}
+.domain_dets {
+  padding-left: 20px;
+  /* background-color: blue; */
+}
+
+#customDiv {
+  margin-left: 40px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.setup-content {
+  padding-top: 30px;
+  position: relative;
+}
+.wizard {
+  /* margin-top: 10%; */
+  margin-left: 10%;
+  margin-right: 10%;
+
+  
+ 
+  /* margin-top: 20px; */
+  /* height: 70vh; */
+  padding: 50px 20px 50px;
+  /* width: 80%;
+  margin: 0 auto; */
+  border-radius: 10px;
+  /* border-bottom: 1px solid #000000; */
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: rgba(250, 250, 250, 0.863);
+}
+
+.btn-1 {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* Darker background on mouse-over */
+.btn-1:hover {
+  background-color: RoyalBlue;
+}
+
+
+.filter {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../assets/image/lilly_bg.png");
+  min-height: 100vh;
+  background-size: 100% 100% ;
+  text-align: center;
+}
+a[type="button"].btn-primary {
+  background: black;
+  color: white;
+}
+
+.blcBtn {
+  background-color: black;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+}
+
+.button_nav {
+  margin-top: 20px;
+}
+
+.btn-primary:active {
+  box-shadow: inset 0 0 0 20rem rgb(213, 43, 30),
+    inset 0 3px 4px 0 rgb(213, 43, 30), 0 0 1px rgb(213, 43, 30);
+}
+
+
+
+#main2 {
+  margin-top: 40px;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+  padding: 50px 20px 50px 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: rgba(250, 250, 250, 0.863);
+  
+}
+
+
+#sub1 {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgb(250, 246, 246);
+  overflow-x: scroll;
+  background-color: rgba(250, 250, 250, 0.863);
+}
+#sub1 td {
+  border: 1px solid rgb(250, 246, 246);
+  height: 40px;
+}
+#sub1 th {
+  border: 1px solid rgb(250, 246, 246);
+}
+#sub2 {
+  width: 95%;
+  margin: 40px;
+  border-collapse: collapse;
+  border: 1px solid rgb(185, 181, 181);
+  overflow-x: scroll;
+  background-color: white;
+}
+#sub2 td {
+  border: 1px solid rgb(185, 181, 181);
+}
+#sub2 th {
+  border: 1px solid rgb(185, 181, 181);
+}
+
+#subDiv {
+  /* overflow-x: auto; */
+  /* width: 1500px; */
+}
+
+/* table {
+  width: 95%;
+  margin-top: 40px;
+  margin-left: 40px;
+  margin-bottom: 40px;
+  border-collapse: collapse;
+  border: 1px solid rgb(68, 67, 67);
+} */
+
+
+
+table,
+td,
+th {
+  border: 1px solid rgb(68, 67, 67);
+  padding: 10px;
+}
+
+#requiredSkill {
+  color: #4caf50;
+  margin: 10px;
+}
+
+.input {
+  /* background-color: rgb(71, 117, 243); */
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cancel {
+  background-color: grey;
+  border: none;
+  border-color: black;
+  /* color: grey; */
+  padding: 10px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid grey;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+}
+
+#progressBarGreen {
+  width: 40%;
+  display: block; /* default: inline-block */
+  margin: 2em auto;
+  padding: 3px;
+  border: 0 none;
+  background: rgb(240, 218, 218);
+}
+
+/* webkit */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  #progressBarGreen {
+    height: 25px;
+    width: 100px;
+  }
+}
+#progressBarGreen::-webkit-progress-bar {
+  background: transparent;
+}
+#progressBarGreen::-webkit-progress-value {
+  background: green;
+}
+
+#progressBarOrange {
+  width: 40%;
+  display: block; /* default: inline-block */
+  margin: 2em auto;
+  padding: 3px;
+  border: 0 none;
+  background: rgb(240, 218, 218);
+}
+
+/* webkit */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  #progressBarOrange {
+    height: 25px;
+    width: 100px;
+  }
+}
+#progressBarOrange::-webkit-progress-bar {
+  background: transparent;
+}
+#progressBarOrange::-webkit-progress-value {
+  background: orange;
+}
+
+#progressBarRed {
+  width: 40%;
+  display: block; /* default: inline-block */
+  margin: 2em auto;
+  padding: 3px;
+  border: 0 none;
+  background: rgb(240, 218, 218);
+}
+
+/* webkit */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  #progressBarRed {
+    height: 25px;
+    width: 100px;
+  }
+}
+#progressBarRed::-webkit-progress-bar {
+  background: transparent;
+}
+#progressBarRed::-webkit-progress-value {
+  background: red;
+}
+
+.progress-bar {
+  position: relative;
+  width: 300px;
+  height: 40px;
+  border: 1px solid black;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: green;
+  transition: width 0.5s;
+}
+
+.progress-bar-value {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.button {
+  background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button1 {
+  background-color: white;
+  color: black;
+  border: 1px solid grey;
+  /* font-size: 12px; */
+}
+
+.button1:hover {
+  background-color: #4caf50;
+  color: white;
+  /* add lilly red */
+}
+.button1:active,
+.button1:focus {
+  background-color: #4caf50;
+  color: white;
+  /* add lilly red */
+}
+
+.profileButton {
+  background-color: #4caf50; /* Green */ /* add lilly red */
+  border: none;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.profileButton:active {
+  color: red;
+}
+
+.profileButton1 {
+  background-color: rgb(243, 236, 236);
+  color: rgb(170, 168, 168);
+}
+
+.profileButton1:hover {
+  background-color: #4caf50;
+  color: white;
+}
+.profileButton1:focus {
+  background-color: #4caf50;
+  color: white;
+}
+.profileButton1:active {
+  background-color: #4caf50;
+  color: white;
+}
+
+#mainLabel {
+  /* font-size: 18px; */
+  margin-top: 20px;
+  /* font-weight: ; */
+}
+
+.wid-100 {
+  width: 100%;
+}
+.wid-70 {
+  width: 70%;
+}
+
+#tHold {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+#upload {
+  font-size: 20px;
+  padding: auto;
+  margin-left: 100px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#or {
+  font-size: 18px;
+  padding: auto;
+  margin-left: 130px;
+  text-align: center;
+  color: grey;
+}
+
+.main_display {
+  background-color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#loadbar{
+  animation: spin 2s linear infinite;
+  }
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+.Files {
+  margin: 20px;
+  display: block; /* important */
+  height: 30%;
+  width: 35%;
+  overflow-y: scroll;
+  border-collapse: collapse;
+}
+.Files th, .tb td { padding: 5px; border: solid 1px #777; }
+.Files th { background-color: lightblue; }
+
+.Files1 {
+  margin: 20px;
+  display: block; /* important */
+  height: 30%;
+  width: 35%;
+  overflow-y: scroll;
+  border-collapse: collapse;
+}
+.Files1 th, .tb td { padding: 5px; border: solid 1px #777; }
+.Files1 th { background-color: rgb(230, 173, 173); }
+
+.ProfileSegregate{
+  margin-top: 10px;
+  font-size: 30px;
+  color: rgb(255, 60, 0);
+}
+
+.visible {
+  height: 3em;
+  width: 10em;
+  background: yellow;
+}
+
+/* .visible:hover {
+  color: red;
+  position: relative;
+} */

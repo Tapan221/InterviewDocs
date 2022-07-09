@@ -1,0 +1,715 @@
+<div class="filter">
+  <div class="wizard">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <div class="row">
+          <div class="stepwizard col-md-offset-3">
+            <div class="stepwizard-row setup-panel">
+              <div class="stepwizard-step">
+                <a
+                  title="Upload Jd & CVs"
+                  class="visible"
+                  href="#step-1"
+                  type="button"
+                  class="btn btn-primary btn-circle"
+                  >1</a
+                >
+                <p>Step 1</p>
+              </div>
+              <div class="stepwizard-step">
+                <a
+                  title="Add Skillsets"
+                  class="visible"
+                  href="#step-2"
+                  type="button"
+                  class="btn btn-default btn-circle"
+                  disabled="disabled"
+                  >2</a
+                >
+                <p>Step 2</p>
+              </div>
+
+              <div class="stepwizard-step">
+               
+                <a
+                  title="Evaluate"
+                  class="visible"
+                  href="#step-3"
+                  type="button"
+                  class="btn btn-default btn-circle"
+                  disabled="disabled"
+                  >3</a
+                >
+                <p>Step 3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <form role="form" action="" method="post" class="">
+            <div class="wizard_content">
+              <div class="row setup-content" id="step-1">
+                <div class="col-xs-6 col-md-offset-3">
+                  <div class="col-md-12">
+                    <!-- <h3>Step 1 / 3</h3> -->
+                    <div class="lead">
+                      Upload Job Description & CVs
+                      <div class="lead_style">
+                        <!-- Please enter the Job description and candidate CV links -->
+                      </div>
+                    </div>
+                    <br /><br />
+                    <!-- <p>Vos informations personnelles</p> -->
+
+                    <div class="form-group wizard_element">
+                      <!-- <input
+                        type="text"
+                        placeholder="Job description path here"
+                        id="jdFilepath"
+                        (change)="readURL($event)"
+                        aria-label="Default"
+                        aria-describedby="inputGroup-sizing-default"
+                        class="form-control wid-100"
+                      />-->
+                      
+                      
+                      <!-- Tapan uncomment this -->
+                      <!-- <input
+                        hint="Job description path here"
+                        class="input"
+                        id="myFile"
+                        type="file"
+                        accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                        (change)="jdUploaded($event)"
+                      /> -->
+
+                      <!-- Tapan uncomment this -->
+                      <label id="upload">Upload Job Description</label>
+                      <input
+                        hint="Job description path here"
+                        class="input"
+                        style="color: black;"
+                        id="myFile"
+                        type="file"
+                        accept=".doc,.docx,"
+                        (change)="onfileChanged($event,'description')"
+                      />
+                      <div class="spinner-border" role="status" *ngIf="processCompleted =='No'">
+                        <span class="sr-only" id="loadbar"></span>
+                     </div>
+
+                     <div *ngIf="fileType=='description'">
+                      <span for="file">Upload Progress Bar:</span>
+                      <progress id="file" value="{{percentage}}" max="100"> percentage </progress>
+                     </div>
+                      <!-- <button (click)="onFileUpload()">Upload</button> -->
+                    </div>
+                    <br />
+                    <div class="form-group wizard_element">
+                    
+
+                      <label id="upload">Upload CVs</label>
+                      
+                      
+                      <input
+                        hint="Job description path here"
+                        class="input"
+                        style="color: black;"
+                        id="myFile"
+                        type="file"
+                        multiple
+                        accept=".docx,.pdf"
+                        (change)="onfileChanged($event,'resume')"
+                      />
+                     
+                      <div class="spinner-border" role="status" *ngIf="processCompletedResume =='No'">
+                        <span class="sr-only" id="loadbar"></span>
+                     </div>
+                     <div *ngIf="fileType=='resume'">
+                      <span for="file">Upload Progress Bar:</span>
+                      <progress id="file" value="{{percentage}}" max="100"> percentage </progress>
+                     </div>
+
+                    
+
+                     <div *ngIf="passedFileListArray || failedFileListArray">
+                      
+                      <table class="Files">
+                        <thead *ngIf="passedFileListArray.length > 0">
+                            <th>Files Successfully Uploaded</th>
+                            <th>File Count</th>
+                          
+                        </thead>
+                        <tbody *ngIf="passedFileListArray.length > 0">
+                          <!-- <tr *ngFor="let fileName of passedFileListArray;let i = index">
+                            <td>{{ fileName }}</td>
+                            <td>{{ i+1 }}</td>
+                          </tr> -->
+
+                          <tr>
+                            <td>File Counts</td>
+                            <td>{{this.passedFileListArrayCount}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table *ngIf="failedFileListArray.length >0" class="Files1">
+                        <thead *ngIf="failedFileListArray.length >0">
+                            <th>Files failed to Upload</th>
+                            <th>File Count</th>
+                          
+                        </thead>
+                        <tbody *ngIf="failedFileListArray.length > 0">
+                          <tr *ngFor="let fileName of failedFileListArray;let i = index">
+                            <td>{{ fileName }}</td>
+                            <td>{{ i+1 }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                     </div>
+
+
+                    </div>
+                    <br />
+                    <div class="button_nav">
+                      <div class="float-end">
+                        <button [disabled]="resumeUploadComplete == 'No'" class="btn nextBtn blcBtn btn-lg" type="button">
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="wizard-content">
+              <div class="row setup-content mx-0" id="step-2">
+                <!-- <div class="col-xs-6"> -->
+                <div class="col-md-12">
+                  <div class="lead">
+                    Required skills for the Job description
+                    <div class="lead_style">
+                      Please select the domain and skills necessary for the job
+                      description
+                    </div>
+                  </div>
+                  <br /><br />
+
+                  <div class="container wizard_element">
+                    <div
+                      class="skill_display form-control form-group"
+                      aria-label="Large"
+                      aria-describedby="inputGroup-sizing-sm"
+                    >
+                      <label *ngFor="let skill of skillArray">
+                        <mat-checkbox
+                          class="checkbox_style"
+                          [checked]="true"
+                          (change)="checkCheckBoxvalue($event, skill)"
+                          >{{ skill }}</mat-checkbox
+                        >
+                        &nbsp; </label
+                      >&nbsp;
+                    </div>
+                    <br />
+                    <div class="row domain_dets">
+                      <div class="col-3">
+                        <mat-form-field appearance="outline" class="wid-100">
+                          <mat-label>Select Domain:</mat-label>
+                          <mat-select
+                            [(value)]="default"
+                            id="suit_drpdown"
+                            (selectionChange)="changeSuit($event)"
+                            class="suit_drpdown"
+                          >
+                            <mat-option
+                              *ngFor="let suit of primarySkills"
+                              [value]="suit"
+                            >
+                              {{ suit }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-9 skillsDetails">
+                        <!-- <label>Required Skills:</label><br /> -->
+                        <div class="">
+                          <label *ngFor="let skill of requiredSkills">
+                            <mat-checkbox
+                              class="checkbox_style"
+                              [checked]="false"
+                              (change)="checkCheckBoxvalue($event, skill)"
+                              >{{ skill }}</mat-checkbox
+                            >
+                            &nbsp; </label
+                          >&nbsp;
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+
+                  <div class="button_nav">
+                    <button
+                      class="btn prevBtn btn-lg blcBtn float-start"
+                      type="button"
+                    >
+                      Previous
+                    </button>
+                    <button
+                      class="btn nextBtn btn-lg blcBtn float-end"
+                      type="button"
+                    >
+                      Next
+                    </button>
+                  </div>
+
+                  <!-- </div> -->
+                </div>
+              </div>
+            </div>
+            <div class="wizard_content">
+              <div class="row setup-content" id="step-3">
+                <div class="col-xs-6 col-md-offset-3">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="row wizard_element">
+                        <div class="col-3">
+                          <label id="mainLabel" class="lead_style"
+                            >Job Role:</label
+                          >
+                        </div>
+                        <div class="col-9">
+                          <mat-form-field appearance="fill" class="wid-70">
+                            <mat-select
+                              [(ngModel)]="selectedOption"
+                              [ngModelOptions]="{ standalone: true }"
+                            >
+                              <mat-option
+                                *ngFor="let option of jobRole"
+                                [value]="option.id"
+                              >
+                                {{ option.name }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group wizard_element">
+                      <div class="row">
+                        <div class="col-3">
+                          <label id="mainLabel" class="lead_style"
+                            >Model Threshold Selection:</label
+                          >
+                        </div>
+                        <div class="col-9">
+                          <div class="custom-slider">
+                            <ngx-slider
+                              class="slider_col"
+                              (userChange)="sliderChaneEvent($event)"
+                              [(value)]="minValue"
+                              [(highValue)]="maxValue"
+                              [options]="options"
+                            ></ngx-slider>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <span class="label label-info">Choix 3 Souhaité</span> -->
+                    <div class="form-group wizard_element">
+                      <div class="row">
+                        <div class="col-3">
+                          <label id="mainLabel" class="lead_style"
+                            >Experience Threshold Selection:</label
+                          >
+                        </div>
+                        <div class="col-9">
+                          <ngx-slider
+                            class="slider"
+                            [(value)]="minValue1"
+                            [(highValue)]="maxValue1"
+                            [options]="options1"
+                          ></ngx-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="button_nav">
+                    <div class="">
+                      <form
+                        style="margin-bottom: 40px"
+                        #userName="ngForm"
+                        (ngSubmit)="onClickSubmit(userName.value)"
+                      >
+                        <button
+                          class="btn prevBtn blcBtn btn-lg float-start"
+                          type="button"
+                        >
+                          Previous
+                        </button>
+                        <input
+                          style="visibility: hidden"
+                          type="text"
+                          name="subject"
+                          placeholder="subject"
+                          [(ngModel)]="subject"
+                        />
+
+                        <input
+                          style="visibility: hidden"
+                          type="text"
+                          name="skill"
+                          placeholder="skill"
+                          [(ngModel)]="skill"
+                        />
+
+                        <input *ngIf="selectedOption != null"
+                          type="submit"
+                          class="input blcBtn float-end"
+                          style="float: right"
+                          value="Evaluate"
+                          [disabled]="click"
+                        />
+                        <input
+                          type="button"
+                          class="cancel float-end"
+                          style="float: right"
+                          value="Cancel"
+                        />
+                      </form>
+
+                      <div style="float: right;" class="spinner-border" role="status" *ngIf="processFileCompleted =='No'" >
+                        <span class="sr-only" id="loadbar"></span>
+                     </div><br><br><br>
+
+                      <div *ngIf="processFileCompleted =='No'" style="float: right;">
+                        <!-- <label style="color: green; font-weight: bold;">{{resumeNameToDisplayInUI}} is getting processed </label><br> -->
+                        <label style="color: Red;font-weight: bold">files to be processed = {{totalNoOfFiles-counter}}  </label>
+                      </div>
+
+                      
+                      <div *ngIf="enableDownload =='Yes'">
+                        <button
+                          class="btn  blcBtn btn-lg float-start"
+                          style="float: right;"
+                          type="button"
+                          (click)="download('allProfiles')"
+                        >
+                          Download Profile Summary
+                        </button>
+                        <span>&nbsp;&nbsp;</span>
+                        <!-- <button
+                          class="btn  blcBtn btn-lg float-start"
+                          style="float: right;"
+                          type="button"
+                          (click)="download('finalSelectedProfiles')"
+                        >
+                          Download Selected Profile
+                        </button>
+                        <span>&nbsp;&nbsp;</span>
+
+                        <button
+                          class="btn  blcBtn btn-lg float-start"
+                          style="float: right;"
+                          type="button"
+                          (click)="download('finalRejectedProfiles')"
+                        >
+                          Download Rejected Profile
+                        </button><span>&nbsp;&nbsp;</span>
+
+                        <button
+                          class="btn  blcBtn btn-lg float-start"
+                          style="float: right;"
+                          type="button"
+                          (click)="download('finalReviewedProfiles')"
+                        >
+                        Download Reviewed Profile
+                        </button> <span>&nbsp;&nbsp;</span>  -->
+                      </div>
+                      
+
+                        <!-- <button
+                        class="btn  blcBtn btn-lg float-start"
+                        style="float: right;"
+                        type="button"
+                        
+                      >
+                      Retrive file
+                      </button>  -->
+
+                      <!-- Tapan -->
+
+                      <!-- (click)="getFileFroms3()" -->
+
+                        
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+  </div>
+
+  <!-- Inside main div -->
+
+  <div>
+    <table id="main2">
+      <table *ngIf="jsonDataArray" id="sub1" class="table-responsive-lg">
+        <tr style="background-color: rgb(243, 236, 236)">
+          <td colspan="3">
+            <button
+              class="profileButton profileButton1"
+              (click)="profileSelected($event)"
+            >
+              Selected Profile
+            </button>
+            <button
+              class="profileButton profileButton1"
+              (click)="profileSelected($event)"
+            >
+              Reviewed Profile
+            </button>
+            <button
+              class="profileButton profileButton1"
+              (click)="profileSelected($event)"
+            >
+              Rejected Profile
+            </button>
+          </td>
+        </tr>
+      </table>
+
+      <div class="ProfileSegregate" *ngIf="profileType != ''">{{profileType}}</div>
+  
+      <table id="sub2" *ngIf="select" class="table table-responsive-lg">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Experience</th>
+            <th>Identified Skills</th>
+            <th>Certificates</th>
+            <th>High Impact</th>
+            <th>Insight</th>
+            <th>Skill Score</th>
+            <th>Model Acceptance Score</th>
+            <th>Status</th>
+            <th>Download Resume</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let jsonData of finalSelectedProfiles">
+            <td>{{ jsonData.name }}</td>
+            <td>{{ jsonData.experience }}</td>
+            <td>{{ jsonData.identified_skills }}</td>
+            <td>{{ jsonData.certification_score }}</td>
+            <td>{{ jsonData.patent }}</td>
+            <td>{{ jsonData.insight }}</td>
+            <td>
+              <progress
+                *ngIf="jsonData.skill_score < visitIdRejection"
+                id="progressBarRed"
+                max="100"
+                value="{{ jsonData.skill_score }}"
+              ></progress>
+              <progress
+                *ngIf="jsonData.skill_score >= visitIdAcceptance"
+                id="progressBarGreen"
+                max="100"
+                value="{{ jsonData.skill_score }}"
+              ></progress>
+              <progress
+                *ngIf="
+                  jsonData.skill_score < visitIdAcceptance &&
+                  jsonData.skill_score > visitIdRejection
+                "
+                id="progressBarOrange"
+                max="100"
+                value="{{ jsonData.skill_score }}"
+              ></progress>
+              {{ jsonData.skill_score }}%
+            </td>
+  
+            <td>
+              <progress
+                *ngIf="jsonData.approve >= visitIdAcceptance"
+                id="progressBarGreen"
+                max="100"
+                value="{{ jsonData.approve }}"
+              ></progress>
+              <progress
+                *ngIf="jsonData.approve < visitIdRejection"
+                id="progressBarRed"
+                max="100"
+                value="{{ jsonData.approve }}"
+              ></progress>
+              {{ jsonData.approve }}%
+              <progress
+                *ngIf="
+                  jsonData.approve < visitIdAcceptance &&
+                  jsonData.approve > visitIdRejection
+                "
+                id="progressBarOrange"
+                max="100"
+                value="{{ jsonData.approve }}"
+              ></progress>
+            </td>
+            <td>{{ jsonData.status }}</td>
+            <td><button class="btn-1" (click)="downloadEvent($event)">download</button></td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <table id="sub2" *ngIf="review" class="table-responsive-lg">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Experience</th>
+            <th>Identified Skills</th>
+            <th>Certificates</th>
+            <th>High Impact</th>
+            <th>Insight</th>
+            <th>Skill Score</th>
+            <th>Model Acceptance Score</th>
+            <th>Status</th>
+            <th>Download Resume</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let jsonData of finalReviewedProfiles">
+            <td>{{ jsonData.name }}</td>
+            <td>{{ jsonData.experience }}</td>
+            <td>{{ jsonData.identified_skills }}</td>
+            <td>{{ jsonData.certification_score }}</td>
+            <td>{{ jsonData.patent }}</td>
+            <td>{{ jsonData.insight }}</td>
+            <td>
+              <progress
+                *ngIf="jsonData.skill_score < visitIdRejection"
+                id="progressBarRed"
+                max="100"
+                value="{{ jsonData.skill_score }}"
+              ></progress>
+              <progress
+                *ngIf="jsonData.skill_score >= visitIdAcceptance"
+                id="progressBarGreen"
+                max="100"
+                value="{{ jsonData.skill_score }}"
+              ></progress>
+              <progress
+                *ngIf="
+                  jsonData.skill_score >= visitIdRejection &&
+                  jsonData.skill_score < visitIdAcceptance
+                "
+                id="progressBarOrange"
+                max="100"
+                value="{{ jsonData.skill_score }}"
+              ></progress>
+              {{ jsonData.skill_score }}%
+            </td>
+  
+            <td>
+              <progress
+                *ngIf="jsonData.approve >= visitIdAcceptance"
+                id="progressBarGreen"
+                max="100"
+                value="{{ jsonData.approve }}"
+              ></progress>
+              <progress
+                *ngIf="jsonData.approve < visitIdRejection"
+                id="progressBarRed"
+                max="100"
+                value="{{ jsonData.approve }}"
+              ></progress>
+              <progress
+                *ngIf="
+                  jsonData.approve >= visitIdRejection &&
+                  jsonData.approve < visitIdAcceptance
+                "
+                id="progressBarOrange"
+                max="100"
+                value="{{ jsonData.approve }}"
+              ></progress>
+              {{ jsonData.approve }}%
+            </td>
+            <td>{{ jsonData.status }}</td>
+            <td><button class="btn-1" (click)="downloadEvent($event)">download</button></td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <table id="sub2" *ngIf="reject" class="table-responsive-lg">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Experience</th>
+            <th>Identified Skills</th>
+            <th>Certificates</th>
+            <th>High Impact</th>
+            <th>Insight</th>
+            <th>Skill Score</th>
+            <th>Model Acceptance Score</th>
+            <th>Status</th>
+            <th>Download Resume</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let jsonData of finalRejectedProfiles">
+            <td>{{ jsonData.name }}</td>
+            <td>{{ jsonData.experience }}</td>
+            <td>{{ jsonData.identified_skills }}</td>
+            <td>{{ jsonData.certification_score }}</td>
+            <td>{{ jsonData.patent }}</td>
+            <td>{{ jsonData.insight }}</td>
+            <td>
+              <progress
+                *ngIf="jsonData.skill_score < 50"
+                id="progressBarRed"
+                max="100"
+                value="{{ jsonData.skill_score }}"
+                label="50%"
+              ></progress>
+              <progress
+                *ngIf="jsonData.skill_score >= 50"
+                id="progressBarGreen"
+                max="100"
+                value="{{ jsonData.skill_score }}"
+                label="50%"
+              ></progress>
+              {{ jsonData.skill_score }}%
+            </td>
+  
+            <td>
+              <progress
+                *ngIf="jsonData.approve >= 50"
+                id="progressBarGreen"
+                max="100"
+                value="{{ jsonData.approve }}"
+                data-label="50% Complete"
+              ></progress>
+              <progress
+                *ngIf="jsonData.approve < 50"
+                id="progressBarRed"
+                max="100"
+                value="{{ jsonData.approve }}"
+                data-label="50% Complete"
+              ></progress>
+              {{ jsonData.approve }}%
+            </td>
+            <td>{{ jsonData.status }}</td>
+            <td><button class="btn-1" (click)="downloadEvent($event)">download</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </table>
+  </div>
+</div>
+
+
+
